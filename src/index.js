@@ -17,8 +17,8 @@ function execute(url, options, payload) {
     const req = httpAgent.request(options, (res) => {
       let resData = [];
 
-      Logger.debug(`STATUS: ${res.statusCode}`);
-      Logger.debug(`HEADERS: ${JSON.stringify(res.headers)}`);
+      Logger.info(`STATUS: ${res.statusCode}`);
+      Logger.info(`HEADERS: ${JSON.stringify(res.headers)}`);
 
       res.setEncoding('utf8');
       res.on('data', (chunk) => {
@@ -27,7 +27,7 @@ function execute(url, options, payload) {
 
       res.on('end', () => {
         let result = resData.join('');
-        Logger.debug(`BODY: ${result}`);
+        Logger.info(`BODY: ${result}`);
         if (result) {
           try {
             result = JSON.parse(result);
